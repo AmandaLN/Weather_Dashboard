@@ -17,6 +17,7 @@ $(document).ready(function () {
         localStorage.setItem("search", JSON.stringify(searchHistory));
         renderSearchHistory();
     })
+        // seach history for under search button
 
     $("#clear-history").on("click", function () {
         searchHistory = [];
@@ -60,6 +61,7 @@ $(document).ready(function () {
         // add row to body
         $("tbody").append(tRow);
 
+        // uv index
         latitude = response.coord.lat;
         longitude = response.coord.lon;
 
@@ -74,16 +76,19 @@ $(document).ready(function () {
         })
 
         
-
+        // 5 day forecast 
         $.ajax({
             url: "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&units=imperial" + "&appid=" + APIkey,
             method: "GET"
         }).then(function (response) {
+            // adding icon hum temp and date to 5 day
+
             $("#fiveFor").empty();
             let fiveFor = $("<h3>").text("5 Day Forecast");
             $("#day1").empty();
             $("#fiveFor").append(fiveFor);
-            // Creating date in forecast
+
+            // Creating date in 5 day forecast
             var forDate = $("<div>").text(moment().add(1, 'days').format('MMMM Do YYYY'));
             $("#day1").append(forDate)
             var forIcon = $("<img>");
@@ -95,7 +100,7 @@ $(document).ready(function () {
             $("#day1").append(forHum)
 
             $("#day2").empty();
-            // Creating date in forecast
+            
             var forDate = $("<div>").text(moment().add(2, 'days').format('MMMM Do YYYY'));
             $("#day2").append(forDate)
             var forIcon = $("<img>");
@@ -107,7 +112,7 @@ $(document).ready(function () {
             $("#day2").append(forHum)
 
             $("#day3").empty();
-            // Creating date in forecast
+            
             var forDate = $("<div>").text(moment().add(3, 'days').format('MMMM Do YYYY'));
             $("#day3").append(forDate)
             var forIcon = $("<img>");
@@ -119,7 +124,7 @@ $(document).ready(function () {
             $("#day3").append(forHum)
 
             $("#day4").empty();
-            // Creating date in forecast
+            
             var forDate = $("<div>").text(moment().add(4, 'days').format('MMMM Do YYYY'));
             $("#day4").append(forDate)
             var forIcon = $("<img>");
@@ -131,7 +136,7 @@ $(document).ready(function () {
             $("#day4").append(forHum)
 
             $("#day5").empty();
-            // Creating date in forecast
+           
             var forDate = $("<div>").text(moment().add(5, 'days').format('MMMM Do YYYY'));
             $("#day5").append(forDate)
             var forIcon = $("<img>");
@@ -146,6 +151,7 @@ $(document).ready(function () {
         })
     
     }
+    // current weather info
 
      function searchWeather(searchValue) {
             $.ajax({
@@ -158,6 +164,7 @@ $(document).ready(function () {
 
             })
         } 
+        // this isnt work need to fix to update when city is clicked
         $("#history").on("click", "historyBtn", function(event) {
             event.preventDefault();
             console.log($(this).text);
