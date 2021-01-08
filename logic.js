@@ -20,8 +20,8 @@ $(document).ready(function () {
 
     $("#clear-history").on("click", function () {
         searchHistory = [];
-        renderSearchHistory();
-        localStorage.clear();
+        $("#history").empty();
+       // localStorage.setItem("search", searchHistory);
     })
 
     function renderSearchHistory() {
@@ -30,11 +30,8 @@ $(document).ready(function () {
             const historyItem = $("<button>");
             historyItem.text(searchHistory[i]);
             historyItem.attr("readonly", true);
-            historyItem.attr("class", "form-control d-block bg-white");
+            historyItem.addClass("historyBtn form-control d-block bg-white");
             historyItem.attr("value", searchHistory[i]);
-            historyItem.on("click", function () {
-                getWeather(historyItem.val());
-            })
             $("#history").append(historyItem);
         }
     }
@@ -45,6 +42,7 @@ $(document).ready(function () {
 
 
     function firstRow(response) {
+        tRow.empty();
         // creating 1st row for current weather
         let todaysWeather = $("<h2>").text(searchValue + ": " + date);
         let weatherIcon = $("<img>");
@@ -160,5 +158,11 @@ $(document).ready(function () {
 
             })
         } 
+        $("#history").on("click", "historyBtn", function(event) {
+            event.preventDefault();
+            console.log($(this).text);
+             searchValue = $(this).val();
+            searchWeather(searchValue);
+        });
 
 })
