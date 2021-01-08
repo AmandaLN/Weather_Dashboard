@@ -22,14 +22,19 @@
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                   </svg> </button>
                </div>
-               <ul class="list-group history"></ul>
-           </aside>
+               <button class="btn btn-primary mb-3" type="button" id="clear-history">Clear history</button>
+               <form id="history"></form>
 
+           </aside>
+           
            <div class="col-lg-9 border">
                <div class="row">
-                 <div id="today" class="col  mt-3 border"></div>
+                 <div id="today" class="col"></div>
                </div>
-               <div  id="forecast" class="row mt-3 border">
+               <h3 id="fiveFor" class="row ml-1"></h3>
+               <br>
+               <br>
+               <div  id="forecast" class="row">
                  <div id="day1" class="col-md forecast bg-primary text-white ml-3 mb-3 rounded"></div>
                  <div id="day2" class="col-md forecast bg-primary text-white ml-3 mb-3 rounded"></div>
                  <div id="day3" class="col-md forecast bg-primary text-white ml-3 mb-3 rounded"></div>
