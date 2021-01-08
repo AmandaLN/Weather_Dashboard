@@ -31,18 +31,21 @@ $(document).ready(function () {
             const historyItem = $("<button>");
             historyItem.text(searchHistory[i]);
             historyItem.attr("readonly", true);
-            historyItem.addClass("historyBtn form-control d-block bg-white");
+            historyItem.addClass( "historyBtn form-control d-block bg-white");
             historyItem.attr("value", searchHistory[i]);
             $("#history").append(historyItem);
         }
     }
     renderSearchHistory();
+    // If we have data in from our localStorage OBJECT
     if (searchHistory.length > 0) {
-        firstRow(searchHistory[searchHistory.length - 1]);
+        console.log(searchHistory[searchHistory.length - 1]);
+        // firstRow(searchHistory[searchHistory.length - 1]);
+        searchWeather(searchHistory[searchHistory.length - 1]);
     }
 
 
-    function firstRow(response) {
+    function firstRow(response, searchValue) {
         tRow.empty();
         // creating 1st row for current weather
         let todaysWeather = $("<h2>").text(searchValue + ": " + date);
@@ -160,12 +163,12 @@ $(document).ready(function () {
 
             }).then(function (response) {
             console.log(response);
-            firstRow(response);
+            firstRow(response, searchValue);
 
             })
         } 
         // this isnt work need to fix to update when city is clicked
-        $("#history").on("click", "historyBtn", function(event) {
+        $("#history").on("click", ".historyBtn", function(event) {
             event.preventDefault();
             console.log($(this).text);
              searchValue = $(this).val();
